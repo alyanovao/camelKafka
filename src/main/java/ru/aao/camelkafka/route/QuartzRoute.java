@@ -13,6 +13,6 @@ public class QuartzRoute extends RouteBuilder {
 
         from("quartz://customScheduler?cron={{scheduler.kafkaProducer.cron}}")
             .process(new RandomGenerationProcessor())
-            .to("direct:message");
+            .to("direct:sendMessage");
     }
 }

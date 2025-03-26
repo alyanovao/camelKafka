@@ -12,7 +12,8 @@ public class ProducerRoute extends RouteBuilder {
     public void configure() {
         errorHandler(defaultErrorHandler());
 
-        from("direct:message")
+        from("direct:sendMessage")
+            .routeId("sendMessageRouteId")
             .setHeader(KafkaConstants.HEADERS, constant("FROM-CAMEL"))
             .marshal().json(JsonLibrary.Jackson)
             .to("kafka:{{kafka.topic}}?brokers={{kafka.url}}")
